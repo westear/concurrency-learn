@@ -1,0 +1,65 @@
+安全发布对象的四种方法:
+	1.在静态初始化函数中初始化一个对象的引用
+	2.将对象的引用保存到volatile类型域或者AtomicReference对象中
+	3.将对象引用保存到某个正确构造对象的final类型域中
+	4.将对象的引用保存到一个由锁保护的域中
+	
+不可变对象满足的条件
+	1.对象创建以后其状态就不能修改
+	2.对象所有域都是final类型
+	3.对象是正确创建的（在对象创建期间，this引用没有逸出）
+	
+不可变集合:
+	java.util.conllections.unmodifiableMap,unmodifiableList,unmodifiableSet,......
+	com.google.guava: ImmutableMap,ImmutableList,ImmutableSet,......
+	
+	
+线程封闭：一个类确保只能被一个线程所见，不能同时被多个线程所见
+	1.程序控制（不推荐）
+	2.堆栈封闭：局部变量，无并发。局部变量会在每次被调用的时候拷贝一份到栈的方法区,确保thread stack每份变量线程封闭
+	3.ThreadLocal:线程封闭类，确保每个线程的变量独享
+	
+	
+线程不安全类与写法:
+	String:
+		StringBuilder是线程【不安全】的类
+		StringBuffer是线程【安全】的类,使用synchronized关键字进行同步,性能下降
+		
+	SimpleDateFormat:是线程【不安全】的实例,通过声明局部变量确保线程安全
+		
+	org.joda.time.format.DateTimeFormat 是线程【安全】的实例
+		
+	先检查再执行容易引发线程【不安全】问题：
+		考虑处理对象是否是共享，或者是否会面临多线程操作
+		if(condition(object)){
+			handle(object);
+		}
+		
+	Collections:
+		ArrayList,HashSet,HashMap 是线程【不安全】的
+		
+		同步容器:线程【不一定安全】,使用synchronized关键字进行同步
+			Vector，HashTable:性能低下
+			synchronizedList,synchronizedSet,synchronizedMap, ....
+		
+	java.util.concurrent:
+		并发容器(J.U.C):线程【安全】
+			ArrayList -> CopyOnWriteArrayList 使用ReentrantLock加锁保持线程安全
+			HashSet -> CopyOnWriteArraySet  使用ReentrantLock加锁保持线程安全
+			TreeSet -> ConcurrentSkipListSet
+			* 基础操作(add,remove)是线程【安全】的，批量(addAll,removeAll)操作需要手动同步
+			
+			HashMap -> ConcurrentHashMap	高并发性，高存取
+			TreeMap -> ConcurrentSkipListMap	key有序，更高并发，适用键值排序
+			
+安全共享对象策略：
+	1.线程限制：
+		一个被线程限制的对象，由线程独占，并且只能被占有它的线程修改
+	2.共享只读：
+		一个共享只读的对象，在没有额外同步的情况下，可以被多个线程并发访问，但是任何线程都不能修改它
+	3.线程安全对象：
+		一个线程安全的对象或者容器，在内部通过同步机制来保证线程安全
+	4.被守护对象：
+		被守护对象只能通过获取特定的锁来访问
+			
+		
