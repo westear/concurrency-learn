@@ -1,0 +1,7 @@
+CountDownLatch												CyclicBarrier
+减计数方式														加计数方式
+计算为0时释放所有等待的线程											计数达到指定值时释放所有等待线程
+计数为0时，无法重置												计数达到指定值时，计数置为0重新开始
+调用countDown()方法计数减一，调用await()方法只进行阻塞，对计数没任何影响		调用await()方法计数加1，若加1后的值不等于构造方法的值，则线程阻塞
+不可重复利用													可重复利用
+线程在countDown()之后，会继续执行其他线程的任务							CyclicBarrier会在指定数值的所有线程任务结束之后，会进行这些线程的后续任务:ready(n)->continue(n)->ready(n)->continue(n)

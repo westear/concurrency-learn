@@ -1,0 +1,34 @@
+url: 
+	AQS的原理浅析:  http://ifeve.com/java-special-troops-aqs/
+	http://ifeve.com/abstractqueuedsynchronizer-use/#more-18899
+
+1.Semaphore
+信号量Semaphore的主要作用是来控制同时访问某个特定资源的操作数量，或者同时执行某个指定操作的数量。 
+Semaphore只是计数，不包括许可对象，并且Semaphore也不会把许可与线程对象关联起来，因此一个线程中获得的许可可以在另外一个线程中释放。
+Semphore对外的两个方法是 acquire()和release()方法。在许可可用前会阻塞每一个 acquire()，然后再获取该许可。每调用 release() 添加一个许可，释放一个正在阻塞的获取者。
+
+2.CountDownLatch
+把一组线程全部关在外面，在某个状态时候放开。即一种同步机制来保证一个或多个线程等待其他线程完成。
+初始化了一个count计数，当count未递减到0时候，每次调用await方法都会阻塞。每次调用countDown来是的的count递减。 
+这是CountDownLatch 中“规定”的该工具类应该满足的功能，详细的使用的例子不再此介绍。
+从构造函数中可以看到该类也维护了一个计数count。这个计数其实也是通过AQS的state来完成的。
+
+3.ReentrantLock 可重入锁
+可重入锁应该是几种同步工具里面被用的对多的一个。标准的互斥操作，也就是一次只能有一个线程持有锁，可能是AQS中最重要的一个类。基本功能就关键字Synchronize所支持的功能。
+lock的功能是获取锁。如果没有线程使用则立即返回，并设置state为1；如果当前线程已经占有锁，则state加1；如果其他线程占有锁，则当前线程不可用，等待。
+在该类中对应定了两种FairSync和NonfairSync两种同步器，都继承者AQS。可以看到对应执行的是lock、release、和Sync的nonfairTryAcquire。
+从前面AQS源码知道release是在父类AQS中定义的方法，lock和nonfairTryAcquire是这个Sync中特定的方法，不是对父类对应方法的覆盖。 
+lock方法有对于FairSync和NoFairSync有两种不同的实现，对于非公平锁只要当前没有线程持有锁，就将锁给当前线程；而公平锁不能这么做，总是调用acquire方法来和其他线程一样公平的尝试获取锁。
+
+4.ReentrantReadWriteLock可重入读写锁
+即读和读之间是兼容的，写和任何操作都是排他的。这种锁机制在数据库系统理论中应用的其实更为普遍。 允许多个读线程同时持有锁，但是只有一个写线程可以持有锁。
+读写锁允许读线程和写线程按照请求锁的顺序重新获取读取锁或者写入锁。当然了只有写线程释放了锁，读线程才能获取重入锁。写线程获取写入锁后可以再次获取读取锁，但是读线程获取读取锁后却不能获取写入锁。 
+ReentrantReadWriteLock锁从其要求的功能上来看，是对前面的ReentrantLock的扩展，因此功能复杂度上来说也提高了，看看该类下面定义的内部类，除了支持公平非公平的Sync外，还有两种不同的锁，ReadLock和WriteLock。
+
+5.FutureTask
+理解其核心需求是，一个执行任务，开始执行后可以被取消，可以查看执行结果，如果执行结果未完成则阻塞， 一般表示一个输入待执行任务。
+在线程池中FutureTask中一般的用法就是构造一个FutureTask，然后提交execute，返回的类型还是FutureTask，调用其get方法即可得到执行结果。run方法定义的就是任务执行的内容，在工作线程中被调用。
+ 通过构造函数可以看到FutureTask封装的了一个Runnable的对象，另外一个泛型参数result。猜也可以猜到前者就是执行的任务内容，后者是来接收执行结果的。
+ 可以看到功能还是委托给Sync对象，构造的参数是一个有执行结果的调用Callable，也可以直接使用一个Callable参数。
+ 
+ 5种工具的总结对照见图:AQS_tools_1.png,AQS_tools_2.png
