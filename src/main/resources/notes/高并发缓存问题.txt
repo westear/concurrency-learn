@@ -1,0 +1,32 @@
+高并发缓存问题
+缓存工具
+	本地缓存:
+		Guava Cache
+	分布式缓存:
+		Memcache
+		Redis
+
+Redis:
+	存储类型:
+		string,
+		hash,
+		list,
+		set
+		sorted set
+		
+缓存一致性:
+	1.update database success -> update cache fail -> data 不一致
+	2.update cache success -> update database -> data 不一致
+	3.update database success -> 淘汰缓存失败 -> data不一致
+	4.淘汰缓存失败 -> update database fail -> query data miss
+	
+缓存穿透问题：
+	并发访问命中key值失败，导致访问到达后端数据库
+	避免方法：
+		1.避免缓存空值
+		2.对所有可能为空的值进行统一处理
+
+缓存雪崩现象：
+	由于缓存原因导致大量请求到达后端数据库，导致数据库甚至系统瘫痪
+	
+	
