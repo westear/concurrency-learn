@@ -16,7 +16,7 @@ public class RedisClient {
 	public void set(String key,String value) throws Exception{
 		Jedis jedis = null;
 		try{
-			jedisPool.getResource();
+			jedis = jedisPool.getResource();
 			jedis.set(key, value);
 		}finally {
             if (jedis != null) {
