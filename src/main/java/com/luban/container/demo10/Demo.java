@@ -6,7 +6,7 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 
 /**
- * DelayQueue
+ * DelayQueue 双向队列
  * 容器里每一个元素都设置了一个时间，时间到了才能从中提取元素
  */
 public class Demo {
