@@ -31,7 +31,7 @@ public class Container5 {
     public static void main(String[] args) {
         Container5 c = new Container5();
 
-        CountDownLatch latch = new CountDownLatch(5);
+        CountDownLatch latch = new CountDownLatch(1);
 
         new Thread(()->{
             System.out.println("t2启动");
@@ -51,7 +51,7 @@ public class Container5 {
                 c.add(new Object());
                 System.out.println("add " + i);
                 if (c.size() == 5) {
-
+                    latch.countDown();
                 }
                 try {
                     TimeUnit.SECONDS.sleep(1);
