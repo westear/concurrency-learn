@@ -4,7 +4,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
- * Queue
+ * Queue，单向队列
  */
 public class Demo {
 
