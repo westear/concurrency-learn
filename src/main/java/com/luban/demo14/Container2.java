@@ -24,8 +24,15 @@ public class Container2<T> {
 	private Condition consumer = lock.newCondition();
 	
 	public void put(T t){
+		/*
+		 * 1.在try-finally外加锁，如果因为异常导致加锁失败，try-finally块中的代码不会执行。
+		 * 	 相反，如果在try{}代码块中加锁失败，finally中的代码无论如何都会执行，但是由于当前线程加锁失败并没有持有lock对象锁 ，
+		 *   所以程序会抛出IllegalMonitorStateException异常。
+		 * 2.加锁语句和try代码块之间不能有其他会抛出异常的代码，
+		 *   因为如果代码抛出异常，却无法执行 lock.unlock() ，会造成锁无法被释放
+		 */
+		lock.lock();
 		try {
-			lock.lock();
 			while (lists.size() == MAX) {
 				producer.await();
 			}
@@ -41,8 +48,8 @@ public class Container2<T> {
 	
 	public T get(){
 		T t = null;
+		lock.lock();
 		try {
-			lock.lock();
 			while (lists.size() == 0) {
 				consumer.await();
 			}
