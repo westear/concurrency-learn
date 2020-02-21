@@ -9,8 +9,8 @@ public class RLDemo2 {
     Lock lock = new ReentrantLock();
 
     public void test1(){
+        lock.lock();
         try {
-            lock.lock();
             for (int i = 0; i < 2; i++) {
                 System.out.println(i);
                 TimeUnit.SECONDS.sleep(Integer.MAX_VALUE);

@@ -16,8 +16,8 @@ public class RLDemo1 {
     Lock lock = new ReentrantLock();
 
     public void test1(){
+        lock.lock();//this
         try {
-            lock.lock();//this
             for (int i = 0; i < 3; i++) {
                 System.out.println(i);
                 TimeUnit.SECONDS.sleep(1);
@@ -31,8 +31,13 @@ public class RLDemo1 {
 
     public void test2(){
         lock.lock();
-        System.out.println("test 2...");
-        lock.unlock();
+        try{
+            System.out.println("test 2...");
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            lock.unlock();
+        }
     }
 
     public static void main(String[] args) {
