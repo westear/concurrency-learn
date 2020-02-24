@@ -22,6 +22,7 @@ public class EnumSingletonDemo {
 
         private  EnumSingletonDemo instance=null;
 
+        //在单例类的私有构造器里完成实例化具体操作，如数据可连接，等
         EnumHolder(){
             instance=new EnumSingletonDemo();
         }
