@@ -1,10 +1,12 @@
+package com.luban.concurrentUtils;
+
 import com.sun.javafx.animation.TickCalculation;
 
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
-public class CarDemo {
+public class SemaphoreDemo {
     public static void main(String[] args) {
         //创建Semaphore
         Semaphore sp=new Semaphore(5);

@@ -1,3 +1,5 @@
+package com.luban.threadPool;
+
 public class StateDemo {
     private static final int COUNT_BITS = Integer.SIZE - 3;
     private static final int CAPACITY   = (1 << COUNT_BITS) - 1;

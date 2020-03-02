@@ -1,6 +1,8 @@
+package com.luban.concurrentUtils;
+
 import java.util.concurrent.ConcurrentLinkedDeque;
 
-public class CollectionDemo01 {
+public class ConcurrentLinkedDequeDemo {
     public static void main(String[] args) throws InterruptedException{
         ConcurrentLinkedDeque<String> list=new ConcurrentLinkedDeque();
         //添加数据

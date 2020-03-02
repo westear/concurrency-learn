@@ -1,3 +1,5 @@
+package com.luban.concurrentUtils;
+
 public class User {
     private int id;
     private String name;
