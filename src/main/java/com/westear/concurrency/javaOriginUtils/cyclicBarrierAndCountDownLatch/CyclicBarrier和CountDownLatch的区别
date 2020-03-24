@@ -1,0 +1,4 @@
+CountDownLatch的计数器只能设置一次，不能重置。
+CyclicBarrier可以使用reset()方法重置。
+    getNumberWaiting() 方法获得当前阻塞的线程数量。
+    isBroken() 方法用来了解阻塞的线程是否被中断,示例看 CyclicBarrierTest3.java
