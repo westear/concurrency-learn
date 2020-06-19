@@ -3,7 +3,7 @@ package com.westear.concurrency.future;
 import java.util.concurrent.*;
 
 /**
- * Callable和Runnbale一样代表着任务，区别在于Callable有返回值并且可以抛出异常。其使用如下：
+ * Callable和Runnable一样代表着任务，区别在于Callable有返回值并且可以抛出异常。其使用如下：
  */
 public class CallableDemo {
 

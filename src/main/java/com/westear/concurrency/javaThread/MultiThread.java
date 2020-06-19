@@ -5,7 +5,7 @@ import java.lang.management.ThreadInfo;
 import java.lang.management.ThreadMXBean;
 
 /**
- * 一个Java程序从main()方法开始执行，然后按照既定的代码逻辑执行，看似没有其他线程参与，但实际上Java程序天数就是多线程程序，
+ * 一个Java程序从main()方法开始执行，然后按照既定的代码逻辑执行，看似没有其他线程参与，但实际上Java程序天然就是多线程程序，
  * 因为执行main()方法是一个名为main的线程。下面使用JMX来查看一个普通的Java程序包含哪些线程。
  * 运行结果：
  *      [1]main                     //main线程，用户程序入口

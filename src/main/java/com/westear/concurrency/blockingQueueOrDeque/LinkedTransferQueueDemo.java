@@ -17,7 +17,7 @@ public class LinkedTransferQueueDemo {
 
         new Thread(()->{
             try {
-                System.out.println("t1"+strings.take());
+                System.out.println("t1 take "+strings.take());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -25,7 +25,7 @@ public class LinkedTransferQueueDemo {
 
         new Thread(()->{
             try {
-                System.out.println("t2"+strings.take());
+                System.out.println("t2 take"+strings.take());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -33,7 +33,7 @@ public class LinkedTransferQueueDemo {
 
         TimeUnit.SECONDS.sleep(2);
 
-        strings.transfer("aaa");
+        strings.transfer("transfer aaa");
 //		strings.put("aaa");
         System.out.println(strings.size());
 //		new Thread(()->{

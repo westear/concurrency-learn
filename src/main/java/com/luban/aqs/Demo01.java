@@ -12,7 +12,7 @@ public class Demo01 {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         Demo01 demo=new Demo01();
         Thread[] th=new Thread[20];
         for (int i = 0; i < 20; i++) {
@@ -20,6 +20,7 @@ public class Demo01 {
                 System.out.println(demo.next());
             });
             th[i].start();
+            th[i].join();
         }
     }
 }

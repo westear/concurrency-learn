@@ -1,12 +1,16 @@
 package com.luban.container.demo3;
 
+import com.westear.concurrency.annoations.NotThreadSafe;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 有10000张火车票,同时有10个窗口对外售票
  * 请写一个模拟程序
+ * 线程不安全的
  */
+@NotThreadSafe
 public class SaleOfTickets1 {
 
 	private static List<Integer> tickets = new ArrayList<>();

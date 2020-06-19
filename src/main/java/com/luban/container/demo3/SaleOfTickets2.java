@@ -1,12 +1,16 @@
 package com.luban.container.demo3;
 
+import com.westear.concurrency.annoations.NotThreadSafe;
+
 import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 
 /**
  * 有10000张火车票,同时有10个窗口对外售票
  * 请写一个模拟程序
+ * 虽然使用线程安全的同步容器 Vector， 但是在程序判断过程中，可能同时有多个线程对最后一张票进行删除，导致异常
  */
+@NotThreadSafe
 public class SaleOfTickets2 {
 
 	private static Vector<Integer> tickets = new Vector<>();

@@ -82,7 +82,7 @@ public class BoundedQueue<T> {
                 try {
                     Integer num = new Random().nextInt(10);
                     queue.add(num);
-                    log.info("thread-{} add num = {}",Thread.currentThread().getName(),num);
+                    log.info("thread-{} add num = {}",Thread.currentThread().getName(),("add"+num));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -95,7 +95,7 @@ public class BoundedQueue<T> {
             new Thread(()->{
                 try {
                     Integer num = queue.remove();
-                    log.info("thread-{} remove num = {}",Thread.currentThread().getName(),num);
+                    log.info("thread-{} remove num = {}",Thread.currentThread().getName(),("remove"+num));
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

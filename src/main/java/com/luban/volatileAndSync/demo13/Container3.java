@@ -11,9 +11,14 @@ import java.util.concurrent.TimeUnit;
  *
  * 这里虽然T2能够及时收到消息唤醒，但是wait会释放锁，notify不会释放锁，所以T1线程结束后
  * T2线程才执行完成
+ *
+ * notify() 或 notifyAll() 方法调用后， 等待线程依旧不会从 wait() 返回，需要调用 notify() 或者 notifyAll() 的线程释放锁之后，等待线程才有机会从 wait() 返回
+ * notify() 方法将等待队列中的一个等待线程从等待队列中移到同步队列中，而 notifyAll() 方法则是将等待队列中的所有线程全部转移到同步队列， 被移动的线程状态由 WAITING 变为 BLOCKED
+ *  *      5.从 wait() 方法返回的前提是获得了调用对象的锁
  */
 public class Container3 {
 
+    //添加列表容器可见性
     volatile List lists = new ArrayList();
 
     public void add(Object o){
@@ -51,7 +56,6 @@ public class Container3 {
 
                     if (c.size() == 5) {
                         lock.notify();
-
                     }
 
                     try {

@@ -10,15 +10,15 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 public class BlockThreadPool {
 
-    private ThreadPoolExecutor pool = null;
+    private ThreadPoolExecutor pool;
 
     public BlockThreadPool(int poolSize) {
         pool = new ThreadPoolExecutor(poolSize, poolSize, 0, TimeUnit.MILLISECONDS,
-                new ArrayBlockingQueue<Runnable>(5), new CustomThreadFactory(),
+                new ArrayBlockingQueue<>(5), new CustomThreadFactory(),
                 new CustomRejectedExecutionHandler());
     }
 
-    public void destory() {
+    public void destroy() {
         if (pool != null) {
             pool.shutdownNow();
         }

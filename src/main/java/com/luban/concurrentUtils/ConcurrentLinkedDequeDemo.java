@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 
 public class ConcurrentLinkedDequeDemo {
     public static void main(String[] args) throws InterruptedException{
-        ConcurrentLinkedDeque<String> list=new ConcurrentLinkedDeque();
+        ConcurrentLinkedDeque<String> list=new ConcurrentLinkedDeque<>();
         //添加数据
         Thread[] add=new Thread[100];
         for (int i = 0; i < 100; i++) {
@@ -24,6 +24,7 @@ public class ConcurrentLinkedDequeDemo {
         for (int i = 0; i < 100; i++) {
             poll[i]=new Thread(()->{
                 for (int j = 0; j < 5000; j++) {
+                    //首尾同时移除
                     list.pollLast();
                     list.pollFirst();
                 }

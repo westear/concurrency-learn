@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
  *      1.使用 wait()， notify(), notifyAll() 时需要先对调用对象加锁
  *      2.调用 wait() 方法后，线程状态由 RUNNING 变为 WAITING, 并将当前线程放置到对象的等待队列
  *      3.notify() 或 notifyAll() 方法调用后， 等待线程依旧不会从 wait() 返回，需要调用 notify() 或者 notifyAll() 的线程释放锁之后，等待线程才有机会从 wait() 返回
- *      4.  notify() 方法将等待对了中的一个瞪大线程从等待队列中移到同步队列中，
+ *      4.  notify() 方法将等待队列中的一个等待线程从等待队列中移到同步队列中，
  *          而 notifyAll() 方法则是将等待队列中的所有线程全部转移到同步队列， 被移动的线程状态由 WAITING 变为 BLOCKED
  *      5.从 wait() 方法返回的前提是获得了调用对象的锁
  * 以上可以说明，等待/通知机制依托于同步机制，离不开锁

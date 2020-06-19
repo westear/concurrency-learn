@@ -1,5 +1,7 @@
 package com.luban.volatileAndSync.demo13;
 
+import com.westear.concurrency.annoations.NotThreadSafe;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -11,6 +13,7 @@ import java.util.concurrent.TimeUnit;
  *
  * 这里list在两个线程之间不保证可见性，所以线程2始终结束不了
  */
+@NotThreadSafe
 public class Container1 {
 
     List lists = new ArrayList();

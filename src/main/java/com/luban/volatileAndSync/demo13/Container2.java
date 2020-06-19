@@ -1,5 +1,7 @@
 package com.luban.volatileAndSync.demo13;
 
+import com.westear.concurrency.annoations.NotThreadSafe;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -12,8 +14,10 @@ import java.util.concurrent.TimeUnit;
  * 有两个问题，第一由于没有加同步，可能size等于5的时候，有另外一个线程加了一下才break，不是很精确
  * 第二个问题就是浪费cpu，T2线程用的是死循环
  */
+@NotThreadSafe
 public class Container2 {
 
+    //添加列表容器可见性
     volatile List lists = new ArrayList();
 
     public void add(Object o){
