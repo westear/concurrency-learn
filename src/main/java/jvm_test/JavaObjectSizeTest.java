@@ -1,3 +1,5 @@
+package jvm_test;
+
 import org.openjdk.jol.info.ClassLayout;
 
 /**

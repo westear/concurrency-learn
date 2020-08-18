@@ -1,3 +1,5 @@
+package jvm_test;
+
 import jdk.nashorn.internal.ir.debug.ObjectSizeCalculator;
 
 import java.sql.Timestamp;
@@ -10,8 +12,6 @@ import java.util.Map;
  * Java对象大小默认都是8的倍数，不够8的倍数则用0进行补位填充
  *
  * @projectName: concurrency
- * @package: PACKAGE_NAME
- * @className: ClassSizeTest
  * @author: Qinyunchan
  * @date: 2020/2/15  3:06 下午
  * @version: 1.0
