@@ -7,6 +7,7 @@ import java.util.Map;
 
 /**
  * java对象的大小 测试类
+ * Java对象大小默认都是8的倍数，不够8的倍数则用0进行补位填充
  *
  * @projectName: concurrency
  * @package: PACKAGE_NAME
@@ -19,6 +20,7 @@ public class ClassSizeTest {
 
     public static void main(String[] args) {
         Object object = new Object();
+        //对象头：8B + 对象指针：4B + 数组长度：0B + 实例数据：0B + 补位填充：4B = 16B
         System.out.println("Object class size: " + ObjectSizeCalculator.getObjectSize(object));
 
         System.out.println("Integer: " + ObjectSizeCalculator.getObjectSize(Integer.valueOf(122)));
