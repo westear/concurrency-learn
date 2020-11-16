@@ -121,7 +121,7 @@ public class DefaultThreadPool<Job extends Runnable> implements ThreadPool<Job> 
                     //如果工作列表是空，那么就wait
                     while(jobs.isEmpty()){
                         try{
-                            jobs.wait();
+                            jobs.wait();    //空闲线程是等待状态
                         }catch (InterruptedException e){
                             //感知到外部对WokrerThread的中断操作，返回
                             Thread.currentThread().interrupt();

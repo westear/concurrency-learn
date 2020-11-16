@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
  *
  * Java线程的状态:
  *      NEW : 线程被构建，但未调用start()方法
- *      RUNNING: 运行状态，Java线程将操作系统中的就绪和运行两种状态统称为“运行态”
+ *      RUNNING: 运行状态，Java线程将操作系统中的就绪和运行两种状态统称为“运行态”:调用start()方法后，线程进入就绪态，等待获取CPU，获得CPU后，线程进入运行态
  *      BLOCKED: 阻塞状态，表示线程阻塞于锁
  *      WAITING: 等待状态，表示线程进入等待状态，进入该状态表示当前线程需要等待其他线程做出一些特定动作（通知或中断）
  *      TIME_WAITING: 超时等待状态，该状态不同于WAITING,它可以在指定的时间自行返回

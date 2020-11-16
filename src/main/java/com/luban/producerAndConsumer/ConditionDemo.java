@@ -17,8 +17,7 @@ public class ConditionDemo<T> {
 
 	private final LinkedList<T> lists = new LinkedList<>();
 	private final int MAX = 10;
-	private int count = 0;
-	
+
 	private Lock lock = new ReentrantLock();
 	private Condition producer = lock.newCondition();
 	private Condition consumer = lock.newCondition();
@@ -37,7 +36,6 @@ public class ConditionDemo<T> {
 				producer.await();
 			}
 			lists.add(t);
-			++count;
 			consumer.signalAll();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,7 +53,6 @@ public class ConditionDemo<T> {
 			}
 			
 			t = lists.removeFirst();
-			count --;
 			producer.signalAll();
 		} catch (Exception e) {
 			e.printStackTrace();

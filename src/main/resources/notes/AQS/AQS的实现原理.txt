@@ -1,0 +1,21 @@
+Java并发编程的核心在于java.util.concurrent包。而juc当中大多数同步器实现都是围绕着共同的基础行为，比如等待队列、条件队列、独占获取、共享获取等，
+而这个行为的抽象就是基于AbstractQueuedSynchronizer，简称AQS。AQS定义了一套多线程访问共享资源的同步器框架，是一个依赖状态（state）的同步器。
+
+AQS具备特性：
+    • 阻塞等待队列
+    • 共享/独占
+    • 公平/非公平
+    • 可重入
+    • 允许中断
+
+AQS框架 - 管理状态
+    1. AQS内部维护属性：volatile int state（32位）
+        state表示资源的可用状态
+    2. state三种访问方式
+        getState()、setState()、compareAndSetState()
+    3. AQS定义两种资源共享方式
+        Exclusive 独占，只有一个线程能执行，如ReetrantLock
+        Share 共享，多个线程可以同时执行，如Semaphore/CountDownLatch
+    4. AQS定义两种队列
+        ● 同步等待队列
+        ● 条件等待队列

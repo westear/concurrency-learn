@@ -1,4 +1,4 @@
-package com.westear.concurrency.future;
+package com.westear.concurrency.futureAndCallable;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
@@ -75,7 +75,7 @@ import java.util.concurrent.FutureTask;
  * - NEW -> CANCELLED
  * - NEW -> INTERRUPTING -> INTERRUPTED
  */
-public class FutureDemo {
+public class FutureTaskDemo {
 
     public static void main(String[] args) throws InterruptedException, ExecutionException {
         long start = System.currentTimeMillis();

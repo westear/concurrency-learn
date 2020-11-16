@@ -1,4 +1,4 @@
-package com.westear.concurrency.javaOriginUtils.cyclicBarrierAndCountDownLatch;
+package com.westear.concurrency.javaOriginUtils.cyclicBarrier;
 
 import java.util.concurrent.CyclicBarrier;
 
